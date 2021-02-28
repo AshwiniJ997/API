@@ -1,5 +1,6 @@
 package RestAssuredAPITesting.RestAssuredAPITesting;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
@@ -16,23 +17,20 @@ public class App
 	@Test
 	 public void GetUserDetails()
 	 {   
-	 // Specify the base URL to the RESTful web service
-	 RestAssured.baseURI = "https://reqres.in/api/users?page=2";
+	 // base URI
+	 RestAssured.baseURI = "https://reqres.in";
 	 
-	 // Get the RequestSpecification of the request that you want to sent
-	 // to the server. The server is specified by the BaseURI that we have
-	 // specified in the above step.
+	 // request
 	 RequestSpecification httpRequest = RestAssured.given();
 	 
-	 // Make a request to the server by specifying the method Type and the method URL.
-	 // This will return the Response from the server. Store the response in a variable.
-	 Response response = httpRequest.request(Method.GET, "/2");
+	 // response
+	 Response response = httpRequest.request(Method.GET, "/api/users?page=2");
 	 
-	 // Now let us print the body of the message to see what response
-	 // we have recieved from the server
+	 // printing the response
 	 String responseBody = response.getBody().asString();
 	 System.out.println("Response Body is =>  " + responseBody);
 	 
+	// Assert.assertEquals(responseBody.getStatusCode(), expected:200);
 	 }
   /*  public static void main( String[] args )
     {
